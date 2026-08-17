@@ -323,7 +323,7 @@ header::after {
             rgba(2, 13, 27, 0.10),
             rgba(2, 13, 27, 0.50)
         ),
-        url("assets/fundo.jpg") center center / cover no-repeat;
+        url("./fundo.jpg") center center / cover no-repeat;
     transform: scale(1.01);
     pointer-events: none;
 }
