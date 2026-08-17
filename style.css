@@ -307,7 +307,7 @@ header::after {
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    background: url("Coach_mentoria/fundo.jpg") center/cover no-repeat;
+    background: url("fundo.jpg") center/cover no-repeat;
 }
 
 .overlay {
