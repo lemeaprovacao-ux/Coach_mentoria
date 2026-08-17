@@ -44,61 +44,36 @@
         <div class="wrap nav">
 
             <a href="#inicio" class="brand" aria-label="LEME Coaching e Mentoria">
-
                 <span class="brand-emblem" aria-hidden="true">
                     <span class="emblem-ring"></span>
-
                     <span class="emblem-lines"></span>
-
                     <strong>L</strong>
                 </span>
 
                 <span class="brand-text">
-
                     <strong>LEME</strong>
-
-                    <small>
-                        COACHING &amp; MENTORIA
-                    </small>
-
+                    <small>COACHING &amp; MENTORIA</small>
                 </span>
-
             </a>
 
-
-            <button type="button" class="toggle" aria-label="Abrir menu" aria-expanded="false">
+            <!-- BOTÃO MOBILE -->
+            <button type="button" class="toggle" id="menu-toggle" aria-label="Abrir menu" aria-expanded="false"
+                aria-controls="menu-principal">
                 ☰
             </button>
 
-
-            <nav aria-label="Navegação principal">
-
-                <a href="#metodo">
-                    Método
-                </a>
-
-                <a href="#publico">
-                    Para quem é
-                </a>
-
-                <a href="#jornada">
-                    Jornada
-                </a>
-
-                <a href="#coach">
-                    Coach
-                </a>
-
-                <a href="#contato">
-                    Contato
-                </a>
-
+            <!-- MENU -->
+            <nav id="menu-principal" aria-label="Navegação principal">
+                <a href="#metodo">Método</a>
+                <a href="#publico">Para quem é</a>
+                <a href="#jornada">Jornada</a>
+                <a href="#coach">Coach</a>
+                <a href="#contato">Contato</a>
             </nav>
 
         </div>
 
     </header>
-
 
 
     <main>
@@ -406,7 +381,7 @@
 
                     <div class="photo">
 
-                        <img src="foto.jpg" alt="Ygor Silva">
+                        <img src="img/foto.jpg" alt="Ygor Delfino da Silva">
 
                     </div>
 
@@ -546,7 +521,7 @@
 
                 <div class="contactbox">
 
-                      <a href="mailto:leme.aprovacao@gmail.com">
+                    <a href="mailto:leme.aprovacao@gmail.com">
 
                         <strong>
                             Entre em contato
@@ -741,49 +716,62 @@
 ===================================================== -->
 
     <script>
+        
+        document.addEventListener("DOMContentLoaded", function () {
 
-        const menuButton =
-            document.querySelector(".toggle");
+            const menuToggle = document.getElementById("menu-toggle");
+            const menu = document.getElementById("menu-principal");
 
-        const navigation =
-            document.querySelector(".nav nav");
-
-
-        menuButton.addEventListener("click", () => {
-
-            const isOpen =
-                navigation.classList.toggle("open");
-
-            menuButton.setAttribute(
-                "aria-expanded",
-                isOpen
-            );
-
-        });
+            if (!menuToggle || !menu) {
+                console.error("Menu LEME não encontrado.");
+                return;
+            }
 
 
-        navigation
-            .querySelectorAll("a")
-            .forEach(link => {
+            menuToggle.addEventListener("click", function () {
 
-                link.addEventListener(
-                    "click",
-                    () => {
+                const aberto = menu.classList.toggle("open");
 
-                        navigation.classList.remove("open");
-
-                        menuButton.setAttribute(
-                            "aria-expanded",
-                            "false"
-                        );
-
-                    }
+                menuToggle.setAttribute(
+                    "aria-expanded",
+                    aberto ? "true" : "false"
                 );
+
+                menuToggle.setAttribute(
+                    "aria-label",
+                    aberto ? "Fechar menu" : "Abrir menu"
+                );
+
+                menuToggle.innerHTML = aberto ? "✕" : "☰";
 
             });
 
-    </script>
 
+            menu.querySelectorAll("a").forEach(function (link) {
+
+                link.addEventListener("click", function () {
+
+                    menu.classList.remove("open");
+
+                    menuToggle.setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
+
+                    menuToggle.setAttribute(
+                        "aria-label",
+                        "Abrir menu"
+                    );
+
+                    menuToggle.innerHTML = "☰";
+
+                });
+
+            });
+
+        });
+
+    </script>
 
 </body>
 
